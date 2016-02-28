@@ -23,11 +23,12 @@
         <button class="introSubmit" ng-click="introSubmit(introSearchTerm)" type="button">Submit Search</button>
     </form>
     <span class="photoCountMessage" ng-hide="introSearchSubmit">We Found {{searchResults.length}} results for "{{currentSearchTerm}}"</span>
+    <span class="zeroImages" ng-hide="zeroImages">No images found for "{{currentSearchTerm}}"</span>
     <!-- imageArea is where all the images will be appended to. -->
     <div ng-hide="introSearchSubmit" class="imageArea">
         <img ng-repeat="piece in searchResults" ng-src="https://farm{{piece.farm}}.staticflickr.com/{{piece.server}}/{{piece.id}}_{{piece.secret}}_n.jpg">
     </div>
-    <footer ng-style="initialBottomBar">
+    <footer ng-style="initialBottomBar" ng-hide="introSearchSubmit">
         <a href="#top">Top of Page</a>
     </footer>
 </body>

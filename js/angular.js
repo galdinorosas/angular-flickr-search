@@ -6,9 +6,11 @@ angular.module('myApp', [])
         $scope.introSearchTerm = "";
         $scope.currentSearchTerm = "";
         $scope.searchResults = [];
-        $scope.initialBottomBar = { "margin-top": "23em" };
+        $scope.zeroImages = true;
 
         $scope.introSubmit = function(searchTerm) {
+            $scope.zeroImages = true;
+            $scope.introSearchSubmit = true;
             $scope.currentSearchTerm = $scope.introSearchTerm;
             $scope.introSearchTerm = "";
 
@@ -33,8 +35,13 @@ angular.module('myApp', [])
                             console.log();
                             $scope.searchResults = response.data.photos.photo;
                             console.log($scope.searchResults);
-                            $scope.introSearchSubmit = false;
-                            $scope.initialBottomBar = { "margin-top": "13em" };
+                            if ($scope.searchResults.length === 0) {
+                                $scope.zeroImages = false;
+                            } else {
+                                $scope.introSearchSubmit = false;
+
+                            }
+
 
                         },
                         function(error) {

@@ -39,7 +39,8 @@
   .introContentContainer .introSubmit:focus {
     border: #1f94f4 solid 1px; }
 
-.photoCountMessage {
+.photoCountMessage,
+.zeroImages {
   position: absolute;
   margin: 6em 0em 0em -27em; }
 
@@ -55,7 +56,8 @@
 footer {
   width: 100%;
   height: 5em;
-  position: fixed; }
+  position: fixed;
+  margin-top: 13em; }
   footer a {
     text-decoration: none; }
 
