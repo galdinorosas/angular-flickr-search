@@ -12,6 +12,12 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var sourcemaps = require('gulp-sourcemaps');
 var minifyCss = require('gulp-minify-css');
+var postcss = require('gulp-postcss');
+var autoprefixer = require('autoprefixer');
+var mqpacker = require('css-mqpacker');
+var csswring = require('csswring');
+
+
 
 // To run broswer sync (to make browser auto-update the browser to visually see changes instantly)
 // open a new tab in terminal and run this code: browser-sync start --server --files "css/*.css,index.html"
@@ -23,10 +29,22 @@ gulp.task('jshint', function() {
         .pipe(jshint.reporter('default'));
 });
 
-gulp.task('minify-css', function() {
+// gulp.task('minify-css', function() {
+//     return gulp.src('public/css/*.css')
+//         .pipe(minifyCss({ compatibility: 'ie8' }))
+//         .pipe(gulp.dest('public/css/minified/'));
+// });
+
+
+gulp.task('css', function() {
+    var processors = [
+        autoprefixer({ browsers: ['last 1 version'] }),
+        mqpacker,
+        csswring
+    ];
     return gulp.src('public/css/*.css')
-        .pipe(minifyCss({ compatibility: 'ie8' }))
-        .pipe(gulp.dest('public/css/minified/'));
+        .pipe(postcss(processors))
+        .pipe(gulp.dest('public/css/autoprefixed/'));
 });
 
 
@@ -64,11 +82,11 @@ gulp.task('scripts', function() {
 });
 
 // Styles build task, concatenates all the files
-gulp.task('styles', function() {
-    return gulp.src('public/css/*.css')
-        .pipe(concat('styles.css'))
-        .pipe(gulp.dest('public/css/concat/'));
-});
+// gulp.task('styles', function() {
+//     return gulp.src('public/css/*.css')
+//         .pipe(concat('styles.css'))
+//         .pipe(gulp.dest('public/css/concat/'));
+// });
 
 // Image optimization task
 gulp.task('images', function() {
@@ -78,7 +96,7 @@ gulp.task('images', function() {
 });
 
 // Build task
-gulp.task('build', ['jshint', 'sass', 'html', 'scripts', 'styles', 'images', 'minify-css']);
+gulp.task('build', ['jshint', 'sass', 'html', 'scripts', 'images', 'css']);
 
 // Default task
 gulp.task('default', ['jshint', 'sass', 'watch']);

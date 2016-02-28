@@ -1,11 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Document
-</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <!-- Link to styles, bootstrap, and google fonts. -->
+    <link rel="stylesheet" type="text/css" href="public/css/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Oleo+Script:700,400' rel='stylesheet' type='text/css'>
+    <!-- Script links to angular and app.js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <script type="text/javascript" src="js/angular.js"></script>
 </head>
+
 <body>
-	
+    <a name="top"></a>
+    <!-- Intro container that will display an input and submit button for the user. -->
+    <form name="introForm" class="introContentContainer">
+        <h1 class="introTitle">Flickr Image Viewer</h1>
+        <input class="introSearch" name="introInput" type="text" placeholder="Search Flickr Viewer" required></input>
+        <br />
+        <button class="introSubmit" type="button">Submit Search</button>
+    </form>
+    <!-- imageArea is where all the images will be appended to. -->
+    <div class="imageArea">
+    </div>
 </body>
+
 </html>
