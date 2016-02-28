@@ -13,17 +13,19 @@
     <script type="text/javascript" src="js/angular.js"></script>
 </head>
 
-<body>
+<body ng-app="myApp">
     <a name="top"></a>
     <!-- Intro container that will display an input and submit button for the user. -->
-    <form name="introForm" class="introContentContainer">
-        <h1 class="introTitle">Flickr Image Viewer</h1>
-        <input class="introSearch" name="introInput" type="text" placeholder="Search Flickr Viewer" required></input>
+    <form ng-controller="myCtrl" name="introForm" novalidate class="introContentContainer">
+        <h1 class="introTitle">Flickr Image Viewer
+</h1>
+        <input class="introSearch" ng-model="introSearchTerm" name="introInput" type="text" placeholder="Search Flickr Viewer" required></input>
+        <span ng-if="introSearchSubmit">Searching Flickr for photos tagged with {{introSearchTerm}}</span>
         <br />
-        <button class="introSubmit" type="button">Submit Search</button>
+        <button class="introSubmit" ng-click="introSubmit(introSearchTerm)" type="button">Submit Search</button>
     </form>
     <!-- imageArea is where all the images will be appended to. -->
-    <div class="imageArea">
+    <div ng-if="introSearchSubmit" class="imageArea">
     </div>
 </body>
 
