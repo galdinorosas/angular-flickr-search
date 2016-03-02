@@ -47,10 +47,18 @@
     }
     
     .photoCountMessage,
-    .zeroImages {
+    .zeroImages,
+     {
         position: absolute;
         margin: 6em 0em 0em -27em;
     }
+
+    .querieMessage{
+        position: absolute;
+        margin: 6em 0em 0em -29em;
+    }
+
+
     
     .imageArea {
         width: 55em;
@@ -60,7 +68,22 @@
             width: 15em;
             height: 15em;
             margin: 2em 1em 2em 2em;
+            transition: 0.5s linear all;
+
+            &.ng-enter,
+            &.ng-leave.ng-leave-active,
+            &.ng-move.ng-move-active{
+                opacity: 0;
+            }
+
+            &.ng-enter.ng-enter-active,
+            &.ng-leave,
+            &.ng-move{
+                opacity: 1;
+            }
         }
+
+        
     }
     
     footer {

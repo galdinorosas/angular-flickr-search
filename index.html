@@ -10,6 +10,7 @@
     <link href='https://fonts.googleapis.com/css?family=Oleo+Script:700,400' rel='stylesheet' type='text/css'>
     <!-- Script links to angular and app.js -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.min.js"></script>
     <script type="text/javascript" src="js/angular.js"></script>
 </head>
 
@@ -22,15 +23,23 @@
         <br />
         <button class="introSubmit" ng-click="introSubmit(introSearchTerm)" type="button">Submit Search</button>
     </form>
+
+    <span ng-hide="searchingMessage" class="querieMessage">Searching for Flickr photos tagged with '{{currentSearchTerm}}'. </span>
+
     <span class="photoCountMessage" ng-hide="introSearchSubmit">We Found {{searchResults.length}} results for "{{currentSearchTerm}}"</span>
+
     <span class="zeroImages" ng-hide="zeroImages">No images found for "{{currentSearchTerm}}"</span>
     <!-- imageArea is where all the images will be appended to. -->
     <div ng-hide="introSearchSubmit" class="imageArea">
+
         <img ng-repeat="piece in searchResults" ng-src="https://farm{{piece.farm}}.staticflickr.com/{{piece.server}}/{{piece.id}}_{{piece.secret}}_n.jpg">
+
     </div>
+
     <footer ng-style="initialBottomBar" ng-hide="introSearchSubmit">
         <a href="#top">Top of Page</a>
     </footer>
+
 </body>
 
 </html>
