@@ -2,17 +2,16 @@ angular.module('myApp', ['ngAnimate'])
     .controller('myCtrl', ['$scope', '$http', function($scope, $http) {
 
         $scope.introSearchSubmit = true;
-
         $scope.introSearchTerm = "";
         $scope.currentSearchTerm = "";
         $scope.searchResults = [];
         $scope.zeroImages = true;
-        $scope.searchingMessage= true;
+        $scope.searchingMessage = true;
 
         $scope.introSubmit = function(searchTerm) {
             $scope.introSearchSubmit = true;
             $scope.zeroImages = true;
-            $scope.searchingMessage= false;
+            $scope.searchingMessage = false;
             $scope.currentSearchTerm = $scope.introSearchTerm;
             $scope.introSearchTerm = "";
             console.log('loading...');
@@ -39,16 +38,12 @@ angular.module('myApp', ['ngAnimate'])
                             $scope.searchResults = response.data.photos.photo;
                             console.log($scope.searchResults);
                             if ($scope.searchResults.length === 0) {
-                                $scope.searchingMessage= true;
+                                $scope.searchingMessage = true;
                                 $scope.zeroImages = false;
                             } else {
-                                $scope.searchingMessage= true;
-
+                                $scope.searchingMessage = true;
                                 $scope.introSearchSubmit = false;
-
                             }
-
-
                         },
                         function(error) {
                             alert("Connection to the server is not working properly.");
@@ -58,8 +53,6 @@ angular.module('myApp', ['ngAnimate'])
             } else {
                 console.log('The form is invalid');
             }
-
-
         };
 
         console.log($scope.introSearchSubmit);
